@@ -3,6 +3,7 @@
 ### Группа: 10 МИ 1
 ### Электронная почта: aleksa.khruleva@gmail.com
 ### VK: https://vk.com/sashakhruleva  
+  
 **[ НАЗВАНИЕ ПРОЕКТА ]**
 
 Авто-оганайзер «Argonauts»
