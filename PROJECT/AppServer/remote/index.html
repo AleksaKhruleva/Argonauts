@@ -1,0 +1,88 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ARGO63</title>
+</head>
+<style>
+	body {
+		font: 1.5em Consolas;
+	}
+	.button {
+		width: 100%;
+		background-color: #55BB55;
+		border: none;
+		color: white;
+		padding: 10px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		margin: 4px 2px;
+		cursor: pointer;
+		border-radius: 8px;
+		font: 1em Consolas;
+	}
+	.input {
+		width: 94%;
+		padding: 10px;
+		margin: 1px 1px;
+		border-radius: 8px;
+		font: 1em Consolas;
+	}
+</style>
+<body>
+	<h1 align="center">ARGO63</h1>
+	<div align="center">
+		<form method="get" action="./wsgi">
+			<table border="1" cellpadding="10" cellspacing="0" align="center" style="width: 50%; border: thick;">
+				<th colspan="3">Show tables</th>
+				<tr><td><button type="submit" name="mission" value="show_table_ttypes" style="padding: 15px 15px; width: 100%; font: 1em Consolas;">ttypes</button></td>
+					<td><button type="submit" name="mission" value="show_table_" style="padding: 15px 15px; width: 100%; font: 1em Consolas;">___</button></td>
+					<td><button type="submit" name="mission" value="show_table_" style="padding: 15px 15px; width: 100%; font: 1em Consolas;">___</button></td>
+				</tr>
+				<tr><td><button type="submit" name="mission" value="show_table_users" style="padding: 15px 15px; width: 100%; font: 1em Consolas;">users</button></td>
+					<td><button type="submit" name="mission" value="show_table_transports" style="padding: 15px 15px; width: 100%; font: 1em Consolas;">transports</button></td>
+					<td><button type="submit" name="mission" value="show_table_" style="padding: 15px 15px; width: 100%; font: 1em Consolas;">_</button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<br>
+	<div align="center">
+		<form method="get" action="./wsgi">
+			<table border="1" cellpadding="10" cellspacing="0" align="center" style="width: 50%; border: thick;">
+				<tr align="center"><td><button class="button" type="submit" name="mission" value="test_user_name">test_user_name</button></td>
+					<td style="text-align: center;"><input class="input" type="text" name="user_name"></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<br>
+	<div align="center">
+		<form method="get" action="./wsgi">
+			<table border="1" cellpadding="10" cellspacing="0" align="center" style="width: 50%; border: thick;">
+				<th colspan="2">Register new user</th>
+				<tr><td>nick</td><td style="text-align: center"><input type="text" name="nick" style="width: 98%; font: 1em Consolas;"></td></tr>
+				<tr><td>mail</td><td style="text-align: center"><input type="text" name="mail" style="width: 98%; font: 1em Consolas;"></td></tr>
+				<tr align="right"><td colspan="2"><button class="button" type="submit" name="mission" value="register_new_user">register_new_user</button></td></tr>
+			</table>
+		</form>
+	</div>
+	<br>
+	<div align="center">
+		<form method="get" action="./wsgi">
+			<table border="1" cellpadding="10" cellspacing="0" align="center" style="width: 50%; border: thick;">
+				<th colspan="2">qqqqqqqqqqqqqqqqq</th>
+				<tr>
+					<td>f1 =</td>
+					<td style="text-align: center"><input type="text" name="f1" style="width: 98%; font: 1em Consolas;"></td>
+				</tr>
+				<tr align="right">
+					<td colspan="2"><button type="submit" name="mission" style="padding: 15px 15px; width: 100%; font: 1em Consolas;">GO</button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>
