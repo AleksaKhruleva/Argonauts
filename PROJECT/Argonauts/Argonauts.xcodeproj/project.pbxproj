@@ -14,6 +14,30 @@
 		5523E2242665525900DAC79A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5523E2232665525900DAC79A /* Assets.xcassets */; };
 		5523E2272665525900DAC79A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5523E2262665525900DAC79A /* Preview Assets.xcassets */; };
 		5523E22A2665525900DAC79A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5523E2282665525900DAC79A /* LaunchScreen.storyboard */; };
+		552476A8269D6D2A00E64DF7 /* FuelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552476A7269D6D2A00E64DF7 /* FuelView.swift */; };
+		552476AA269D6EEC00E64DF7 /* FuelDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552476A9269D6EEC00E64DF7 /* FuelDetailView.swift */; };
+		5527014F2685F786000AD7FD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5527014E2685F786000AD7FD /* HomeView.swift */; };
+		55332654268B309400ED67C3 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55332653268B309400ED67C3 /* AccountView.swift */; };
+		55332656268B30A800ED67C3 /* TransportsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55332655268B30A800ED67C3 /* TransportsView.swift */; };
+		5538917F2690A96B0069B1B7 /* TranspAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5538917E2690A96B0069B1B7 /* TranspAddView.swift */; };
+		555B4453268E099E0034884E /* TranspDetailEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555B4452268E099E0034884E /* TranspDetailEditView.swift */; };
+		5566AD1A26982CC50032D7C9 /* EngHourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5566AD1926982CC50032D7C9 /* EngHourView.swift */; };
+		5566AD1C269833240032D7C9 /* EngHourDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5566AD1B269833240032D7C9 /* EngHourDetailView.swift */; };
+		55698BFE2680A3F100A8F3F3 /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55698BFD2680A3F100A8F3F3 /* EntryView.swift */; };
+		556F3440268C6642004859C5 /* EnterPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556F343F268C6642004859C5 /* EnterPinView.swift */; };
+		556F3442268C8A5F004859C5 /* TranspDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556F3441268C8A5F004859C5 /* TranspDetailView.swift */; };
+		55814E842684B075008CBB5A /* RepeatPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55814E832684B075008CBB5A /* RepeatPinView.swift */; };
+		5588B0AC2695A2CA00C81A8C /* MileageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5588B0AB2695A2CA00C81A8C /* MileageView.swift */; };
+		5588B0AE2695E7C100C81A8C /* MileageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5588B0AD2695E7C100C81A8C /* MileageDetailView.swift */; };
+		559376FA269EF20F00D8A683 /* ServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559376F9269EF20F00D8A683 /* ServiceView.swift */; };
+		559376FC269EF34600D8A683 /* ServiceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559376FB269EF34600D8A683 /* ServiceDetailView.swift */; };
+		559376FE269F33DA00D8A683 /* HubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559376FD269F33DA00D8A683 /* HubView.swift */; };
+		55B8136726821B47005BB9D7 /* EnterPassCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B8136626821B47005BB9D7 /* EnterPassCodeView.swift */; };
+		55BFBED6268336BF0034F4B9 /* SetPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BFBED5268336BF0034F4B9 /* SetPinView.swift */; };
+		55D8FACF2689B42D005657DC /* AddTranspView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D8FACE2689B42D005657DC /* AddTranspView.swift */; };
+		55E0995E269202E00066D0E7 /* EnterEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E0995D269202E00066D0E7 /* EnterEmailView.swift */; };
+		55E56D7226836EC000DDD801 /* smth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E56D7126836EC000DDD801 /* smth.swift */; };
+		55E79EA526863D930043B2C3 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E79EA426863D930043B2C3 /* CreateAccountView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +50,31 @@
 		5523E2262665525900DAC79A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5523E2292665525900DAC79A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5523E22B2665525900DAC79A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		552476A7269D6D2A00E64DF7 /* FuelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelView.swift; sourceTree = "<group>"; };
+		552476A9269D6EEC00E64DF7 /* FuelDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelDetailView.swift; sourceTree = "<group>"; };
+		5527014E2685F786000AD7FD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		55332653268B309400ED67C3 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		55332655268B30A800ED67C3 /* TransportsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportsView.swift; sourceTree = "<group>"; };
+		5538917E2690A96B0069B1B7 /* TranspAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranspAddView.swift; sourceTree = "<group>"; };
+		555B4452268E099E0034884E /* TranspDetailEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranspDetailEditView.swift; sourceTree = "<group>"; };
+		5566AD1926982CC50032D7C9 /* EngHourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngHourView.swift; sourceTree = "<group>"; };
+		5566AD1B269833240032D7C9 /* EngHourDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngHourDetailView.swift; sourceTree = "<group>"; };
+		55698BFD2680A3F100A8F3F3 /* EntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryView.swift; sourceTree = "<group>"; };
+		556F343F268C6642004859C5 /* EnterPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPinView.swift; sourceTree = "<group>"; };
+		556F3441268C8A5F004859C5 /* TranspDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranspDetailView.swift; sourceTree = "<group>"; };
+		55814E832684B075008CBB5A /* RepeatPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatPinView.swift; sourceTree = "<group>"; };
+		5588B0AB2695A2CA00C81A8C /* MileageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileageView.swift; sourceTree = "<group>"; };
+		5588B0AD2695E7C100C81A8C /* MileageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileageDetailView.swift; sourceTree = "<group>"; };
+		559376F9269EF20F00D8A683 /* ServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceView.swift; sourceTree = "<group>"; };
+		559376FB269EF34600D8A683 /* ServiceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailView.swift; sourceTree = "<group>"; };
+		559376FD269F33DA00D8A683 /* HubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HubView.swift; sourceTree = "<group>"; };
+		55B8136626821B47005BB9D7 /* EnterPassCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPassCodeView.swift; sourceTree = "<group>"; };
+		55BA322D266B6D9C003063DC /* Argonauts.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Argonauts.entitlements; sourceTree = "<group>"; };
+		55BFBED5268336BF0034F4B9 /* SetPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPinView.swift; sourceTree = "<group>"; };
+		55D8FACE2689B42D005657DC /* AddTranspView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTranspView.swift; sourceTree = "<group>"; };
+		55E0995D269202E00066D0E7 /* EnterEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterEmailView.swift; sourceTree = "<group>"; };
+		55E56D7126836EC000DDD801 /* smth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = smth.swift; sourceTree = "<group>"; };
+		55E79EA426863D930043B2C3 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +88,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		550CDED526933E4100377829 /* registration */ = {
+			isa = PBXGroup;
+			children = (
+				55698BFD2680A3F100A8F3F3 /* EntryView.swift */,
+				55E0995D269202E00066D0E7 /* EnterEmailView.swift */,
+				55B8136626821B47005BB9D7 /* EnterPassCodeView.swift */,
+				55BFBED5268336BF0034F4B9 /* SetPinView.swift */,
+				55814E832684B075008CBB5A /* RepeatPinView.swift */,
+				55E79EA426863D930043B2C3 /* CreateAccountView.swift */,
+				55D8FACE2689B42D005657DC /* AddTranspView.swift */,
+			);
+			path = registration;
+			sourceTree = "<group>";
+		};
 		5523E20E2665525800DAC79A = {
 			isa = PBXGroup;
 			children = (
@@ -58,6 +121,7 @@
 		5523E2192665525800DAC79A /* Argonauts */ = {
 			isa = PBXGroup;
 			children = (
+				55BA322D266B6D9C003063DC /* Argonauts.entitlements */,
 				5523E21A2665525800DAC79A /* AppDelegate.swift */,
 				5523E21C2665525800DAC79A /* SceneDelegate.swift */,
 				5523E21E2665525800DAC79A /* ContentView.swift */,
@@ -65,7 +129,22 @@
 				5523E2282665525900DAC79A /* LaunchScreen.storyboard */,
 				5523E22B2665525900DAC79A /* Info.plist */,
 				5523E2202665525800DAC79A /* Argonauts.xcdatamodeld */,
+				550CDED526933E4100377829 /* registration */,
+				55E56D7126836EC000DDD801 /* smth.swift */,
+				556F343F268C6642004859C5 /* EnterPinView.swift */,
+				5527014E2685F786000AD7FD /* HomeView.swift */,
+				552476A6269D6BAB00E64DF7 /* TransportsView */,
+				552476A7269D6D2A00E64DF7 /* FuelView.swift */,
+				552476A9269D6EEC00E64DF7 /* FuelDetailView.swift */,
+				5588B0AB2695A2CA00C81A8C /* MileageView.swift */,
+				5588B0AD2695E7C100C81A8C /* MileageDetailView.swift */,
+				5566AD1926982CC50032D7C9 /* EngHourView.swift */,
+				5566AD1B269833240032D7C9 /* EngHourDetailView.swift */,
+				55332653268B309400ED67C3 /* AccountView.swift */,
 				5523E2252665525900DAC79A /* Preview Content */,
+				559376F9269EF20F00D8A683 /* ServiceView.swift */,
+				559376FB269EF34600D8A683 /* ServiceDetailView.swift */,
+				559376FD269F33DA00D8A683 /* HubView.swift */,
 			);
 			path = Argonauts;
 			sourceTree = "<group>";
@@ -76,6 +155,17 @@
 				5523E2262665525900DAC79A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		552476A6269D6BAB00E64DF7 /* TransportsView */ = {
+			isa = PBXGroup;
+			children = (
+				55332655268B30A800ED67C3 /* TransportsView.swift */,
+				556F3441268C8A5F004859C5 /* TranspDetailView.swift */,
+				555B4452268E099E0034884E /* TranspDetailEditView.swift */,
+				5538917E2690A96B0069B1B7 /* TranspAddView.swift */,
+			);
+			path = TransportsView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,9 +238,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				559376FA269EF20F00D8A683 /* ServiceView.swift in Sources */,
+				5588B0AC2695A2CA00C81A8C /* MileageView.swift in Sources */,
+				5566AD1A26982CC50032D7C9 /* EngHourView.swift in Sources */,
+				55D8FACF2689B42D005657DC /* AddTranspView.swift in Sources */,
+				55E0995E269202E00066D0E7 /* EnterEmailView.swift in Sources */,
+				556F3442268C8A5F004859C5 /* TranspDetailView.swift in Sources */,
 				5523E21B2665525800DAC79A /* AppDelegate.swift in Sources */,
+				559376FC269EF34600D8A683 /* ServiceDetailView.swift in Sources */,
 				5523E21D2665525800DAC79A /* SceneDelegate.swift in Sources */,
+				5588B0AE2695E7C100C81A8C /* MileageDetailView.swift in Sources */,
+				559376FE269F33DA00D8A683 /* HubView.swift in Sources */,
+				55BFBED6268336BF0034F4B9 /* SetPinView.swift in Sources */,
+				552476A8269D6D2A00E64DF7 /* FuelView.swift in Sources */,
+				5538917F2690A96B0069B1B7 /* TranspAddView.swift in Sources */,
+				5527014F2685F786000AD7FD /* HomeView.swift in Sources */,
+				55814E842684B075008CBB5A /* RepeatPinView.swift in Sources */,
+				55698BFE2680A3F100A8F3F3 /* EntryView.swift in Sources */,
+				556F3440268C6642004859C5 /* EnterPinView.swift in Sources */,
+				55332654268B309400ED67C3 /* AccountView.swift in Sources */,
+				55332656268B30A800ED67C3 /* TransportsView.swift in Sources */,
+				555B4453268E099E0034884E /* TranspDetailEditView.swift in Sources */,
+				55E79EA526863D930043B2C3 /* CreateAccountView.swift in Sources */,
 				5523E2222665525800DAC79A /* Argonauts.xcdatamodeld in Sources */,
+				55B8136726821B47005BB9D7 /* EnterPassCodeView.swift in Sources */,
+				552476AA269D6EEC00E64DF7 /* FuelDetailView.swift in Sources */,
+				55E56D7226836EC000DDD801 /* smth.swift in Sources */,
+				5566AD1C269833240032D7C9 /* EngHourDetailView.swift in Sources */,
 				5523E21F2665525800DAC79A /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,18 +404,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = Argonauts/Argonauts.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "\"Argonauts/Preview Content\"";
 				DEVELOPMENT_TEAM = 8FRM8M93L5;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Argonauts/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = site.aleksa.Argonauts;
+				PRODUCT_BUNDLE_IDENTIFIER = online.argonauts.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Argonauts Provisioning Profile";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -312,18 +429,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = Argonauts/Argonauts.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "\"Argonauts/Preview Content\"";
 				DEVELOPMENT_TEAM = 8FRM8M93L5;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Argonauts/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = site.aleksa.Argonauts;
+				PRODUCT_BUNDLE_IDENTIFIER = online.argonauts.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Argonauts Provisioning Profile";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
