@@ -34,7 +34,7 @@ struct EngHourDetailView: View {
                     TextField("Моточасы", text: $engHour)
                         .keyboardType(.numberPad)
                     Button {
-                        loadMileageAsync()
+                        addEngHourAsync()
                     } label: {
                         Text("Добавить")
                     }
@@ -92,7 +92,7 @@ struct EngHourDetailView: View {
         }
     }
     
-    func loadMileageAsync() {
+    func addEngHourAsync() {
         isLoading = true
         DispatchQueue.global(qos: .userInitiated).async {
             addEngHour(tid: String(tid), date: date, engHour: engHour)
@@ -104,6 +104,7 @@ struct EngHourDetailView: View {
     }
     
     func loadDataAsync() {
+        engHours = []
         isLoading = true
         DispatchQueue.global(qos: .userInitiated).async {
             let engHours = getEngHour(tid: String(tid))
@@ -225,9 +226,3 @@ struct EngHourDetailView: View {
         }
     }
 }
-
-//struct MileageDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MileageDetailView()
-//    }
-//}

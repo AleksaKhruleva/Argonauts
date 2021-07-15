@@ -178,12 +178,16 @@ def add_user(mydb, query_dict, response_dict):
     try:
         nick = query_dict['nick'][0]
         email = query_dict['email'][0]
+
         mydb.connect()
         mycursor = mydb.cursor()
+
         mycursor.execute("INSERT INTO user (nick) VALUE ('%s')" % nick)
         mycursor.execute("SELECT LAST_INSERT_ID()")
+
         uid = mycursor.fetchone()[0]
         mycursor.execute("INSERT INTO email (uid, email) VALUES (%d, '%s')" % (uid, email))
+
         mydb.commit()
         response_dict['new_user'] = {'email': email, 'nick': nick, 'uid': uid}
     except mysql.connector.Error as error:
@@ -197,10 +201,13 @@ def add_user(mydb, query_dict, response_dict):
 def get_tid_tnick(mydb, query_dict, response_dict):
     try:
         email = query_dict['email'][0]
+
         mydb.connect()
         mycursor = mydb.cursor()
+
         mycursor.execute("SELECT nick, tid FROM transport WHERE uid = (SELECT uid FROM email WHERE email = '%s') ORDER BY nick" % (email))
         columns = [desc[0] for desc in mycursor.description]
+
         response_dict['tid_nick'] = [dict(zip(columns, row)) for row in mycursor.fetchall()]
     except mysql.connector.Error as error:
         err_code = int(str(error).split()[0])
@@ -213,10 +220,13 @@ def get_tid_tnick(mydb, query_dict, response_dict):
 def get_transport_info(mydb, query_dict, response_dict):
     try:
         tid = int(query_dict['tid'][0])
+
         mydb.connect()
         mycursor = mydb.cursor()
+
         mycursor.execute("SELECT * FROM transport WHERE tid = %d" % (tid))
         columns = [desc[0] for desc in mycursor.description]
+
         response_dict['transport_info'] = [dict(zip(columns, row)) for row in mycursor.fetchall()]
     except mysql.connector.Error as error:
         err_code = int(str(error).split()[0])
@@ -230,6 +240,7 @@ def update_transp_info(mydb, query_dict, response_dict):
     try:
         tid = int(query_dict['tid'][0])
         resp = {'tid': tid}
+
         mydb.connect()
         mycursor = mydb.cursor()
 
@@ -265,14 +276,13 @@ def add_transp(mydb, query_dict, response_dict):
     try:
         mycursor.execute("INSERT INTO transport (uid, nick) SELECT uid, '%s' from email WHERE email = '%s'" % (nick, email))
         mycursor.execute("SELECT LAST_INSERT_ID()")
+
         tid = mycursor.fetchone()[0]
+
         resp = {'tid': tid, 'nick' : nick, 'email' : email}
     except mysql.connector.Error as error:
         err_code = int(str(error).split()[0])
-        if err_code == 1062:
-            response_dict['add_transp'] = {'bad nick': 'true'}
-        else:
-            response_dict['add_transp'] = {'server_error': 1, 'err_code': err_code}
+        response_dict['add_transp'] = {'server_error': 1, 'err_code': err_code}
         mydb.close()
         return response_dict
 
@@ -312,7 +322,6 @@ def add_transp(mydb, query_dict, response_dict):
     except mysql.connector.Error as error:
         err_code = int(str(error).split()[0])
         response_dict['add_transp'] = {'server_error': 1, 'err_code': err_code}
-
     finally:
         mydb.close()
 
@@ -331,6 +340,25 @@ def get_user_info(mydb, query_dict, response_dict):
     except mysql.connector.Error as error:
         err_code = int(str(error).split()[0])
         response_dict['user_info'] = {'server_error': 1, 'err_code': err_code}
+    finally:
+        mydb.close()
+
+    return response_dict
+
+def get_mileage(mydb, query_dict, response_dict):
+    try:
+        tid = query_dict['tid'][0]
+
+        mydb.connect()
+        mycursor = mydb.cursor()
+
+        mycursor.execute("SELECT * FROM mileage WHERE tid = %s ORDER BY date DESC" % (tid))
+        columns = [desc[0] for desc in mycursor.description]
+
+        response_dict['get_mileage'] = [dict(zip(columns, row)) for row in mycursor.fetchall()]
+    except mysql.connector.Error as error:
+        err_code = int(str(error).split()[0])
+        response_dict['get_mileage'] = [{'server_error': 1, 'err_code': err_code}]
     finally:
         mydb.close()
 
@@ -379,26 +407,6 @@ def delete_mileage(mydb, query_dict, response_dict):
     except mysql.connector.Error as error:
         err_code = int(str(error).split()[0])
         response_dict['delete_mileage'] = {'server_error': 1, 'err_code': err_code}
-    finally:
-        mydb.close()
-
-    return response_dict
-
-
-def get_mileage(mydb, query_dict, response_dict):
-    try:
-        tid = query_dict['tid'][0]
-
-        mydb.connect()
-        mycursor = mydb.cursor()
-
-        mycursor.execute("SELECT * FROM mileage WHERE tid = %s ORDER BY date DESC" % (tid))
-        columns = [desc[0] for desc in mycursor.description]
-
-        response_dict['get_mileage'] = [dict(zip(columns, row)) for row in mycursor.fetchall()]
-    except mysql.connector.Error as error:
-        err_code = int(str(error).split()[0])
-        response_dict['get_mileage'] = [{'server_error': 1, 'err_code': err_code}]
     finally:
         mydb.close()
 
@@ -482,7 +490,6 @@ def get_fuel(mydb, query_dict, response_dict):
         mycursor.execute("SELECT f.*, m.mileage FROM fuel AS f LEFT JOIN mileage as m ON f.date = m.date WHERE f.tid = %s ORDER BY date DESC" % (tid))
         columns = [desc[0] for desc in mycursor.description]
 
-
         response_dict['get_fuel'] = [dict(zip(columns, row)) for row in mycursor.fetchall()]
     except mysql.connector.Error as error:
         err_code = int(str(error).split()[0])
@@ -496,6 +503,7 @@ def add_fuel(mydb, query_dict, response_dict):
     mydb.connect()
     mycursor = mydb.cursor()
     resp = dict()
+    global fid
     
     try:
         tid = query_dict['tid'][0]
@@ -518,8 +526,8 @@ def add_fuel(mydb, query_dict, response_dict):
                 mycursor.execute("SELECT LAST_INSERT_ID()")
                 fid = mycursor.fetchone()[0]
                 mycursor.execute("UPDATE transport SET mileage = (SELECT MAX(mileage) FROM mileage WHERE tid = %s) WHERE tid = %s" % (tid, tid))
-                mydb.commit()
-                resp['fid'] = int(fid)
+
+                resp['fid'] = fid
                 resp['date'] = date
                 resp['mileage'] = int(mileage)
                 resp['fuel'] = int(fuel)
@@ -531,13 +539,13 @@ def add_fuel(mydb, query_dict, response_dict):
 
     try:
         if 'fill_brand' in query_dict:
-            mycursor.execute("UPDATE fuel SET fill_brand = '%s' WHERE tid = %s" % (query_dict['fill_brand'][0], tid))
+            mycursor.execute("UPDATE fuel SET fill_brand = '%s' WHERE fid = %s" % (query_dict['fill_brand'][0], fid))
             resp['fill_brand'] = query_dict['fill_brand'][0]
         if 'fuel_brand' in query_dict:
-            mycursor.execute("UPDATE fuel SET fuel_brand = '%s' WHERE tid = %s" % (query_dict['fuel_brand'][0], tid))
+            mycursor.execute("UPDATE fuel SET fuel_brand = '%s' WHERE fid = %s" % (query_dict['fuel_brand'][0], fid))
             resp['fuel_brand'] = query_dict['fuel_brand'][0]
         if 'fuel_cost' in query_dict:
-            mycursor.execute("UPDATE fuel SET fuel_cost = %s WHERE tid = %s" % (query_dict['fuel_cost'][0], tid))
+            mycursor.execute("UPDATE fuel SET fuel_cost = %s WHERE fid = %s" % (query_dict['fuel_cost'][0], fid))
             resp['fuel_cost'] = float(query_dict['fuel_cost'][0])
         mydb.commit()
         response_dict['add_fuel'] = resp
@@ -616,8 +624,8 @@ def add_service(mydb, query_dict, response_dict):
                 mycursor.execute("SELECT LAST_INSERT_ID()")
                 sid = mycursor.fetchone()[0]
                 mycursor.execute("UPDATE transport SET mileage = (SELECT MAX(mileage) FROM mileage WHERE tid = %s) WHERE tid = %s" % (tid, tid))
-                mydb.commit()
-                resp['sid'] = int(sid)
+
+                resp['sid'] = sid
                 resp['date'] = date
                 resp['ser_type'] = ser_type
                 resp['mileage'] = int(mileage)
@@ -626,13 +634,12 @@ def add_service(mydb, query_dict, response_dict):
         response_dict['add_service'] = {'server_error': 1, 'err_code': err_code}
         mydb.close()
         return response_dict
-
     try:
         if 'mat_cost' in query_dict:
-            mycursor.execute("UPDATE service SET mat_cost = %s WHERE tid = %s" % (query_dict['mat_cost'][0], tid))
+            mycursor.execute("UPDATE service SET mat_cost = %s WHERE sid = %s" % (query_dict['mat_cost'][0], sid))
             resp['mat_cost'] = query_dict['mat_cost'][0]
         if 'wrk_cost' in query_dict:
-            mycursor.execute("UPDATE service SET wrk_cost = %s WHERE tid = %s" % (query_dict['wrk_cost'][0], tid))
+            mycursor.execute("UPDATE service SET wrk_cost = %s WHERE sid = %s" % (query_dict['wrk_cost'][0], sid))
             resp['wrk_cost'] = query_dict['wrk_cost'][0]
         mydb.commit()
         response_dict['add_service'] = resp
@@ -644,8 +651,105 @@ def add_service(mydb, query_dict, response_dict):
 
     return response_dict
 
+def delete_service(mydb, query_dict, response_dict):
+    try:
+        sid = query_dict['sid'][0]
+        tid = query_dict['tid'][0]
 
+        mydb.connect()
+        mycursor = mydb.cursor()
 
+        mycursor.execute("DELETE FROM mileage WHERE tid = %s AND date = (SELECT date FROM service WHERE sid = %s)" % (tid, sid))
+        mycursor.execute("DELETE FROM service WHERE sid = %s" % (sid))
+        mycursor.execute("UPDATE transport SET mileage = (SELECT MAX(mileage) FROM mileage WHERE tid = %s) WHERE tid = %s" % (tid, tid))
+
+        mydb.commit()
+        response_dict['delete_service'] = {'deleted_sid': sid}
+    except mysql.connector.Error as error:
+        err_code = int(str(error).split()[0])
+        response_dict['delete_service'] = {'server_error': 1, 'err_code': err_code}
+    finally:
+        mydb.close()
+
+    return response_dict
+
+def get_material(mydb, query_dict, response_dict):
+    try:
+        sid = query_dict['sid'][0]
+
+        mydb.connect()
+        mycursor = mydb.cursor()
+
+        mycursor.execute("SELECT * FROM material WHERE sid = %s" % (sid))
+        columns = [desc[0] for desc in mycursor.description]
+
+        response_dict['get_material'] = [dict(zip(columns, row)) for row in mycursor.fetchall()]
+    except mysql.connector.Error as error:
+        err_code = int(str(error).split()[0])
+        response_dict['get_material'] = [{'server_error': 1, 'err_code': err_code}]
+    finally:
+        mydb.close()
+
+    return response_dict
+
+def add_material(mydb, query_dict, response_dict):
+    mydb.connect()
+    mycursor = mydb.cursor()
+    resp = dict()
+    try:
+        sid = query_dict['sid'][0]
+        mat_info = query_dict['mat_info'][0]
+        wrk_type = query_dict['wrk_type'][0]
+
+        resp['mat_info'] = mat_info
+        resp['wrk_type'] = wrk_type
+        
+        mycursor.execute("INSERT INTO material (sid, mat_info, wrk_type) VALUES (%s, '%s', '%s')" % (sid, mat_info, wrk_type))
+    except mysql.connector.Error as error:
+        err_code = int(str(error).split()[0])
+        response_dict['add_material'] = {'server_error': 1, 'err_code': err_code}
+        mydb.close()
+        return response_dict
+
+    try:
+        mycursor.execute("SELECT LAST_INSERT_ID()")
+        maid = mycursor.fetchone()[0]
+        resp['maid'] = maid
+        if 'mat_cost' in query_dict:
+            mycursor.execute("UPDATE material SET mat_cost = %s WHERE maid = %s" % (query_dict['mat_cost'][0], maid))
+            resp['mat_cost'] = float(query_dict['mat_cost'][0])
+        if 'wrk_cost' in query_dict:
+            mycursor.execute("UPDATE material SET wrk_cost = %s WHERE maid = %s" % (query_dict['wrk_cost'][0], maid))
+            resp['wrk_cost'] = float(query_dict['wrk_cost'][0])
+        mydb.commit()
+        response_dict['add_material'] = resp
+    except mysql.connector.Error as error:
+        print(error)
+        err_code = int(str(error).split()[0])
+        response_dict['add_material'] = {'server_error': 1, 'err_code': err_code}
+    finally:
+        mydb.close()
+
+    return response_dict
+
+def delete_material(mydb, query_dict, response_dict):
+    try:
+        maid = query_dict['maid'][0]
+
+        mydb.connect()
+        mycursor = mydb.cursor()
+
+        mycursor.execute("DELETE FROM material WHERE maid = %s" % (maid))
+
+        mydb.commit()
+        response_dict['delete_material'] = {'deleted_maid': maid}
+    except mysql.connector.Error as error:
+        err_code = int(str(error).split()[0])
+        response_dict['delete_material'] = {'server_error': 1, 'err_code': err_code}
+    finally:
+        mydb.close()
+
+    return response_dict
 
 
 
@@ -741,7 +845,15 @@ def application(environ, start_response):
         get_service(argodb, query_dict, response_dict)
     elif request_mission == 'add_service':
         add_service(argodb, query_dict, response_dict)
-
+    elif request_mission == 'delete_service':
+        delete_service(argodb, query_dict, response_dict)
+    elif request_mission == 'get_material':
+        get_material(argodb, query_dict, response_dict)
+    elif request_mission == 'add_material':
+        add_material(argodb, query_dict, response_dict)
+    elif request_mission == 'delete_material':
+        delete_material(argodb, query_dict, response_dict)
+    
     response_status = '200 OK'
     response_json = bytes(json.dumps(response_dict, default=dump_date, indent=2, ensure_ascii=False, sort_keys=True), encoding='utf-8')
     response_headers = [('Content-type', 'text/plain; charset=utf-8'), ('Content-Length', str(len(response_json)))]

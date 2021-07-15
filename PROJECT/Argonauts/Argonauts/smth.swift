@@ -120,9 +120,9 @@ class Fuel {
     var mileage: Int?
     var fillBrand: String?
     var fuelBrand: String?
-    var fuelCost: Float?
+    var fuelCost: Double?
     
-    init(fid: Int, date: String, fuel: Int, mileage: Int?, fillBrand: String?, fuelBrand: String?, fuelCost: Float?) {
+    init(fid: Int, date: String, fuel: Int, mileage: Int?, fillBrand: String?, fuelBrand: String?, fuelCost: Double?) {
         self.fid = fid
         self.date = date
         self.fuel = fuel
@@ -138,10 +138,10 @@ class Service {
     var date: String
     var serType: String
     var mileage: Int
-    var matCost: Float?
-    var wrkCost: Float?
+    var matCost: Double?
+    var wrkCost: Double?
     
-    init(sid: Int, date: String, serType: String, mileage: Int, matCost: Float?, wrkCost: Float?) {
+    init(sid: Int, date: String, serType: String, mileage: Int, matCost: Double?, wrkCost: Double?) {
         self.sid = sid
         self.date = date
         self.serType = serType
@@ -151,15 +151,15 @@ class Service {
     }
 }
 
-class Materials {
-    var mid: Int
+class Material {
+    var maid: Int
     var matInfo: String
     var wrkType: String
-    var matCost: Float?
-    var wrkCost: Float?
+    var matCost: Double?
+    var wrkCost: Double?
     
-    init(mid: Int, matInfo: String, wrkType: String, matCost: Float?, wrkCost: Float?) {
-        self.mid = mid
+    init(maid: Int, matInfo: String, wrkType: String, matCost: Double?, wrkCost: Double?) {
+        self.maid = maid
         self.matInfo = matInfo
         self.wrkType = wrkType
         self.matCost = matCost

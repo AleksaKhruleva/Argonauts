@@ -43,6 +43,7 @@ struct MileageView: View {
                     .progressViewStyle(CircularProgressViewStyle(tint: .pink))
             }
         }
+        .navigationBarTitle("Пробег", displayMode: .inline)
         .alert(isPresented: $showAlert) {
             Alert(title: Text("Ошибка"), message: Text(alertMessage))
         }
@@ -98,11 +99,5 @@ struct MileageView: View {
             showAlert = true
         }
         return []
-    }
-}
-
-struct MileageAdd_Previews: PreviewProvider {
-    static var previews: some View {
-        MileageView()
     }
 }

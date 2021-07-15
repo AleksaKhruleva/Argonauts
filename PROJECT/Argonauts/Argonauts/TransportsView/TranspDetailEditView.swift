@@ -133,8 +133,13 @@ struct TranspDetailEditView: View {
                     print("TranspDetailEdit.updateTranspInfo(): \(info)")
                     
                     if info["server_error"] != nil {
-                        alertMessage = "Ошибка сервера"
-                        showAlert = true
+                        if info["err_code"] as! Int == 1062 {
+                            alertMessage = "Транспортное средство с таким ником уже есть"
+                            showAlert = true
+                        } else {
+                            alertMessage = "Ошибка сервера"
+                            showAlert = true
+                        }
                     } else {
                         alertMessage = ""
                     }
@@ -150,11 +155,3 @@ struct TranspDetailEditView: View {
         }
     }
 }
-
-//struct TranspInfoEditView_Previews: PreviewProvider {
-//    @Binding var d = true
-//    static var previews: some View {
-//        let date = Date()
-//        TranspInfoEditView(isPresented: d, nick: "z", producted: "2005", mileage: "156", engHours: "456", diagDate: date, osagoDate: date)
-//    }
-//}

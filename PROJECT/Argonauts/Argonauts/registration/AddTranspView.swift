@@ -142,8 +142,8 @@ struct AddTranspView: View {
                     let dop = json["add_transp"] as! [String : Any]
                     print("AddTransp.addTransp(): \(dop)")
                     
-                    if dop["bad nick"] != nil {
-                        print("AddTransp.addTransp(): bad nick")
+                    if dop["bad_nick"] != nil {
+                        print("AddTransp.addTransp(): bad_nick")
                         alertMessage = "У вас уже есть транспортное средство с таким ником, выберите другой"
                         showAlert = true
                     } else if dop["server_error"] != nil {

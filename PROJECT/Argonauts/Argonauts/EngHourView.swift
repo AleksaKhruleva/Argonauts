@@ -43,6 +43,7 @@ struct EngHourView: View {
                     .progressViewStyle(CircularProgressViewStyle(tint: .pink))
             }
         }
+        .navigationBarTitle("Моточасы", displayMode: .inline)
         .alert(isPresented: $showAlert) {
             Alert(title: Text("Ошибка"), message: Text(alertMessage))
         }

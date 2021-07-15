@@ -160,14 +160,14 @@ struct TranspAddView: View {
                     let info = json["add_transp"] as! [String : Any]
                     print("TranspAddView.addTransp(): \(info)")
                     
-                    if info["bad nick"] != nil {
-                        print("TranspAddView.addTransp(): bad nick")
-                        alertMessage = "У вас уже есть транспортное средство с таким ником, выберите другой"
-                        showAlert = true
-                    } else if info["server_error"] != nil {
-                        print("TranspAddView.addTransp(): server_error")
-                        alertMessage = "Ошибка сервера, попробуйте ещё раз позже"
-                        showAlert = true
+                    if info["server_error"] != nil {
+                        if info["err_code"] as! Int == 1062 {
+                            alertMessage = "Транспортное средство с таким ником уже есть"
+                            showAlert = true
+                        } else {
+                            alertMessage = "Ошибка сервера, попробуйте ещё раз позже"
+                            showAlert = true
+                        }
                     } else if info["mileage"] != nil {
                         let dop = info["mileage"] as! [String : Any]
                         if dop["server_error"] != nil {

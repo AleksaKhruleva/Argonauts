@@ -1,52 +1,92 @@
 //
-//  MileageDetailView.swift
+//  ServiceMaterialView.swift
 //  Argonauts
 //
-//  Created by Aleksa Khruleva on 07.07.2021.
+//  Created by Aleksa Khruleva on 15.07.2021.
 //
 
 import SwiftUI
 
-struct MileageDetailView: View {
+struct ServiceMaterialView: View {
     @EnvironmentObject var globalObj: GlobalObj
     
-    @State var tid: Int
-    @State var nick: String
+    @State var sid: Int
+    @State var dateServ: String
+    @State var serTypeServ: String
+    @State var mileageServ: Int
+    @State var matCostServ: Double?
+    @State var wrkCostServ: Double?
     
     @State var alertMessage: String = ""
-    @State var mileage: String = ""
-    @State var date: Date = Date()
+    @State var matInfo: String = ""
+    @State var wrkType: String = "Замена"
+    @State var matCost: String = ""
+    @State var wrkCost: String = ""
     
     @State var showAlert: Bool = false
     @State var isLoading: Bool = false
     @State var showFields: Bool = false
+    @State var isExpanded: Bool = false
     
-    @State var mileages: [Mileage] = []
+    @State var wrkTypes: [String] = ["Замена", "Ремонт", "Окраска", "Снятие/установка", "Регулировка"]
     
+    @State var materials: [Material] = []
+    
+    @State var tapped: Bool = false
     var body: some View {
         ZStack {
             VStack {
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("Дата")
+                        Text("Тип работ")
+                        Text("Пробег")
+                        Text("Стоимость деталей")
+                        Text("Стоимость работ")
+                    }
+                    Spacer()
+                    VStack(alignment: .trailing) {
+                        Text(String(describing: dateServ))
+                        Text(String(describing: serTypeServ))
+                        Text(String(describing: mileageServ))
+                        Text(String(describing: matCostServ))
+                        Text(String(describing: wrkCostServ))
+                    }
+                }
                 if showFields {
-                    DatePicker("", selection: $date, in: ...Date(), displayedComponents: [.date, .hourAndMinute])
-                        .datePickerStyle(WheelDatePickerStyle())
-                        .labelsHidden()
-                    TextField("Пробег", text: $mileage)
-                        .keyboardType(.numberPad)
+                    DisclosureGroup("Тип работы: \(wrkType)", isExpanded: $isExpanded) {
+                        ForEach(wrkTypes, id: \.self) { el in
+                            HStack {
+                                Spacer()
+                                Text(el)
+                                Spacer()
+                            }
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                wrkType = el
+                                isExpanded = false
+                            }
+                            Divider()
+                        }
+                    }
+                    TextField("Код/наименование детали", text: $matInfo)
+                    TextField("Стоимость детали", text: $matCost)
+                        .keyboardType(.decimalPad)
+                    TextField("Стоимость работы", text: $wrkCost)
+                        .keyboardType(.decimalPad)
                     Button {
-                        addMileageAsync()
+                        addMaterialAsync()
                     } label: {
                         Text("Добавить")
                     }
                 }
                 List {
-                    ForEach(mileages, id: \.mid) { mileage in
-                        HStack {
-                            Text(mileage.date)
-                            Spacer()
-                            Text("\(mileage.mileage)")
-                        }
+                    ForEach(materials, id: \.maid) { material in
+                        RowMaterial(matInfo: material.matInfo, wrkType: material.wrkType, matCost: material.matCost, wrkCost: material.wrkCost)
+//                        Text(String(describing: material.matCost))
+//                        Text(String(describing: material.wrkCost))
                     }
-                    .onDelete(perform: deleteMileageAsync)
+                    .onDelete(perform: deleteMaterialAsync)
                 }
             }
             if isLoading {
@@ -57,7 +97,7 @@ struct MileageDetailView: View {
                     .progressViewStyle(CircularProgressViewStyle(tint: .pink))
             }
         }
-        .navigationBarTitle(nick, displayMode: .inline)
+        .navigationBarTitle("Детали", displayMode: .inline)
         .navigationBarItems(trailing:
                                 Button(action: {
                                     showFields.toggle()
@@ -77,51 +117,51 @@ struct MileageDetailView: View {
     }
     
     func loadDataAsync() {
-        mileages = []
+        materials = []
         isLoading = true
         DispatchQueue.global(qos: .userInitiated).async {
-            let mileages = getMileage(tid: String(tid))
+            let materials = getMaterial(sid: String(sid))
             DispatchQueue.main.async {
-                self.mileages = mileages
+                self.materials = materials
                 isLoading = false
             }
         }
     }
     
-    func addMileageAsync() {
+    func addMaterialAsync() {
         isLoading = true
         DispatchQueue.global(qos: .userInitiated).async {
-            addMileage(tid: String(tid), date: date, mileage: mileage)
+            addMaterial(sid: String(sid), matInfo: matInfo, wrkType: wrkType, matCost: matCost, wrkCost: wrkCost)
             DispatchQueue.main.async {
                 isLoading = false
             }
         }
     }
     
-    func deleteMileageAsync(at offsets: IndexSet) {
+    func deleteMaterialAsync(at offsets: IndexSet) {
         isLoading = true
         DispatchQueue.global(qos: .userInitiated).async {
             let index = offsets[offsets.startIndex]
-            let mid = mileages[index].mid
-            deleteMileage(mid: String(mid), tid: String(tid))
+            let maid = materials[index].maid
+            deleteMaterial(maid: String(maid))
             DispatchQueue.main.async {
                 isLoading = false
                 if alertMessage == "" {
-                    mileages.remove(at: index)
+                    materials.remove(at: index)
                 }
             }
         }
     }
     
-    func getMileage(tid: String) -> [Mileage] {
-        let urlString = "https://www.argonauts.online/ARGO63/wsgi?mission=get_mileage&tid=" + tid
+    func getMaterial(sid: String) -> [Material] {
+        let urlString = "https://www.argonauts.online/ARGO63/wsgi?mission=get_material&sid=" + sid
         let encodedUrl = urlString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
         let url = URL(string: encodedUrl!)
         if let data = try? Data(contentsOf: url!) {
             do {
                 if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                    let info = json["get_mileage"] as! [[String : Any]]
-                    print("MileageDetailView.getMileage(): \(info)")
+                    let info = json["get_material"] as! [[String : Any]]
+                    print("ServiceMaterialView.getMaterial(): \(info)")
                     
                     if info.isEmpty {
                         // empty
@@ -129,17 +169,13 @@ struct MileageDetailView: View {
                         alertMessage = "Ошибка сервера"
                         showAlert = true
                     } else {
-                        var mileages: [Mileage] = []
+                        var materials: [Material] = []
                         alertMessage = ""
                         for el in info {
-                            var date = el["date"] as! String
-                            date = date.replacingOccurrences(of: "T", with: " ")
-                            date.removeLast(3)
-                            
-                            let mileage = Mileage(mid: el["mid"] as! Int, date: date, mileage: el["mileage"] as! Int)
-                            mileages.append(mileage)
+                            let material = Material(maid: el["maid"] as! Int, matInfo: el["mat_info"] as! String, wrkType: el["wrk_type"] as! String, matCost: el["mat_cost"] as? Double, wrkCost: el["wrk_cost"] as? Double)
+                            materials.append(material)
                         }
-                        return mileages
+                        return materials
                     }
                 }
             } catch let error as NSError {
@@ -154,35 +190,27 @@ struct MileageDetailView: View {
         return []
     }
     
-    func addMileage(tid: String, date: Date, mileage: String) {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ru")
-        formatter.dateFormat = "yyyy-MM-dd HH:mm"
-        let dateString = formatter.string(from: date)
-        let urlString = "https://www.argonauts.online/ARGO63/wsgi?mission=add_mileage&tid=" + tid + "&date=" + dateString + "&mileage=" + mileage
+    func addMaterial(sid: String, matInfo: String, wrkType: String, matCost: String, wrkCost: String) {
+        let urlString = "https://www.argonauts.online/ARGO63/wsgi?mission=add_material&sid=" + sid + "&mat_info=" + matInfo + "&wrk_type=" + wrkType + "&mat_cost=" + matCost + "&wrk_cost=" + wrkCost
         let encodedUrl = urlString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
         let url = URL(string: encodedUrl!)
         if let data = try? Data(contentsOf: url!) {
             do {
                 if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                    let info = json["add_mileage"] as! [String : Any]
-                    print("MileageDetailView.addMileage(): \(info)")
+                    let info = json["add_material"] as! [String : Any]
+                    print("ServiceMaterialView.addMaterial(): \(info)")
                     
                     if info["server_error"] != nil {
                         if info["err_code"] as! Int == 1062 {
-                            alertMessage = "Запись с таким временем/пробегом уже есть"
+                            alertMessage = "Деталь с таким названием уже есть"
                             showAlert = true
                         } else {
                             alertMessage = "Ошибка сервера"
                             showAlert = true
                         }
-                    } else if info["mid"] == nil {
-                        alertMessage = "Введены некорректные данные"
-                        showAlert = true
                     } else {
                         alertMessage = ""
-                        mileages.append(Mileage(mid: info["mid"] as! Int, date: dateString, mileage: Int(mileage)!))
-                        mileages.sort { $0.date > $1.date }
+                        materials.append(Material(maid: info["maid"] as! Int, matInfo: info["mat_info"] as! String, wrkType: info["wrk_type"] as! String, matCost: info["mat_cost"] as? Double, wrkCost: info["wrk_cost"] as? Double))
                     }
                 }
             } catch let error as NSError {
@@ -196,15 +224,15 @@ struct MileageDetailView: View {
         }
     }
     
-    func deleteMileage(mid: String, tid: String) {
-        let urlString = "https://www.argonauts.online/ARGO63/wsgi?mission=delete_mileage&mid=" + mid + "&tid=" + tid
+    func deleteMaterial(maid: String) {
+        let urlString = "https://www.argonauts.online/ARGO63/wsgi?mission=delete_material&maid=" + maid
         let encodedUrl = urlString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
         let url = URL(string: encodedUrl!)
         if let data = try? Data(contentsOf: url!) {
             do {
                 if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                    let info = json["delete_mileage"] as! [String : Any]
-                    print("MileageDetailView.deleteMileage(): \(info)")
+                    let info = json["delete_material"] as! [String : Any]
+                    print("ServiceMaterialView.deleteMaterial(): \(info)")
                     
                     if info["server_error"] != nil {
                         alertMessage = "Ошибка сервера"

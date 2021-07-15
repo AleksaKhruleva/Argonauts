@@ -109,6 +109,7 @@ struct FuelDetailView: View {
     }
     
     func loadDataAsync() {
+        fuels = []
         isLoading = true
         DispatchQueue.global(qos: .userInitiated).async {
             let fuels = getFuel(tid: String(tid))
@@ -190,7 +191,7 @@ struct FuelDetailView: View {
                         showAlert = true
                     } else {
                         alertMessage = ""
-                        fuels.append(Fuel(fid: info["fid"] as! Int, date: info["date"] as! String, fuel: info["fuel"] as! Int, mileage: info["mileage"] as? Int, fillBrand: info["fill_brand"] as? String, fuelBrand: info["fuel_brand"] as? String, fuelCost: info["fuel_cost"] as? Float))
+                        fuels.append(Fuel(fid: info["fid"] as! Int, date: info["date"] as! String, fuel: info["fuel"] as! Int, mileage: info["mileage"] as? Int, fillBrand: info["fill_brand"] as? String, fuelBrand: info["fuel_brand"] as? String, fuelCost: info["fuel_cost"] as? Double))
                         fuels.sort { $0.date > $1.date }
                     }
                 }
@@ -226,7 +227,7 @@ struct FuelDetailView: View {
                             var date = el["date"] as! String
                             date = date.replacingOccurrences(of: "T", with: " ")
                             date.removeLast(3)
-                            let fuel = Fuel(fid: el["fid"] as! Int, date: date, fuel: el["fuel"] as! Int, mileage: el["mileage"] as? Int, fillBrand: el["fill_brand"] as? String, fuelBrand: el["fuel_brand"] as? String, fuelCost: el["fuel_cost"] as? Float)
+                            let fuel = Fuel(fid: el["fid"] as! Int, date: date, fuel: el["fuel"] as! Int, mileage: el["mileage"] as? Int, fillBrand: el["fill_brand"] as? String, fuelBrand: el["fuel_brand"] as? String, fuelCost: el["fuel_cost"] as? Double)
                             fuels.append(fuel)
                         }
                         return fuels

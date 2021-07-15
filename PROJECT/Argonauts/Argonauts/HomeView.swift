@@ -20,12 +20,12 @@ struct HomeView: View {
                     .environmentObject(globalObj)
                     .navigationBarHidden(true)
                 
-                //                HubView()
-                //                    .tabItem {
-                //                        Label("Центр", systemImage: "square.dashed")
-                //                    }
-                //                    .environmentObject(globalObj)
-                //                    .navigationBarHidden(true)
+                HubView()
+                    .tabItem {
+                        Label("Центр", systemImage: "square.dashed")
+                    }
+                    .environmentObject(globalObj)
+                    .navigationBarHidden(true)
                 
                 ServiceView()
                     .tabItem {
@@ -41,19 +41,19 @@ struct HomeView: View {
                     .environmentObject(globalObj)
                     .navigationBarHidden(true)
                 
-                EngHourView()
-                    .tabItem {
-                        Label("Моточасы", systemImage: "bolt")
-                    }
-                    .environmentObject(globalObj)
-                    .navigationBarHidden(true)
+                //                EngHourView()
+                //                    .tabItem {
+                //                        Label("Моточасы", systemImage: "bolt")
+                //                    }
+                //                    .environmentObject(globalObj)
+                //                    .navigationBarHidden(true)
                 
-                MileageView()
-                    .tabItem {
-                        Label("Пробег", systemImage: "timer")
-                    }
-                    .environmentObject(globalObj)
-                    .navigationBarHidden(true)
+//                MileageView()
+//                    .tabItem {
+//                        Label("Пробег", systemImage: "timer")
+//                    }
+//                    .environmentObject(globalObj)
+//                    .navigationBarHidden(true)
                 
                 AccountView()
                     .tabItem {
@@ -63,6 +63,6 @@ struct HomeView: View {
                     .navigationBarHidden(true)
             }
         }
-//        .navigationViewStyle(StackNavigationViewStyle())
+        //        .navigationViewStyle(StackNavigationViewStyle())
     }
 }

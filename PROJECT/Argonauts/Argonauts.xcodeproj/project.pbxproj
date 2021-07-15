@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5503D66626A016260092DE9F /* ServiceMaterialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5503D66526A016260092DE9F /* ServiceMaterialView.swift */; };
 		5523E21B2665525800DAC79A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5523E21A2665525800DAC79A /* AppDelegate.swift */; };
 		5523E21D2665525800DAC79A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5523E21C2665525800DAC79A /* SceneDelegate.swift */; };
 		5523E21F2665525800DAC79A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5523E21E2665525800DAC79A /* ContentView.swift */; };
@@ -29,6 +30,7 @@
 		55814E842684B075008CBB5A /* RepeatPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55814E832684B075008CBB5A /* RepeatPinView.swift */; };
 		5588B0AC2695A2CA00C81A8C /* MileageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5588B0AB2695A2CA00C81A8C /* MileageView.swift */; };
 		5588B0AE2695E7C100C81A8C /* MileageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5588B0AD2695E7C100C81A8C /* MileageDetailView.swift */; };
+		5589E8C026A037DC00B2DDFD /* RowMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589E8BF26A037DC00B2DDFD /* RowMaterial.swift */; };
 		559376FA269EF20F00D8A683 /* ServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559376F9269EF20F00D8A683 /* ServiceView.swift */; };
 		559376FC269EF34600D8A683 /* ServiceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559376FB269EF34600D8A683 /* ServiceDetailView.swift */; };
 		559376FE269F33DA00D8A683 /* HubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559376FD269F33DA00D8A683 /* HubView.swift */; };
@@ -41,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5503D66526A016260092DE9F /* ServiceMaterialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceMaterialView.swift; sourceTree = "<group>"; };
 		5523E2172665525800DAC79A /* Argonauts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Argonauts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5523E21A2665525800DAC79A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5523E21C2665525800DAC79A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,11 +68,11 @@
 		55814E832684B075008CBB5A /* RepeatPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatPinView.swift; sourceTree = "<group>"; };
 		5588B0AB2695A2CA00C81A8C /* MileageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileageView.swift; sourceTree = "<group>"; };
 		5588B0AD2695E7C100C81A8C /* MileageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileageDetailView.swift; sourceTree = "<group>"; };
+		5589E8BF26A037DC00B2DDFD /* RowMaterial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowMaterial.swift; sourceTree = "<group>"; };
 		559376F9269EF20F00D8A683 /* ServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceView.swift; sourceTree = "<group>"; };
 		559376FB269EF34600D8A683 /* ServiceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailView.swift; sourceTree = "<group>"; };
 		559376FD269F33DA00D8A683 /* HubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HubView.swift; sourceTree = "<group>"; };
 		55B8136626821B47005BB9D7 /* EnterPassCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPassCodeView.swift; sourceTree = "<group>"; };
-		55BA322D266B6D9C003063DC /* Argonauts.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Argonauts.entitlements; sourceTree = "<group>"; };
 		55BFBED5268336BF0034F4B9 /* SetPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPinView.swift; sourceTree = "<group>"; };
 		55D8FACE2689B42D005657DC /* AddTranspView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTranspView.swift; sourceTree = "<group>"; };
 		55E0995D269202E00066D0E7 /* EnterEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterEmailView.swift; sourceTree = "<group>"; };
@@ -121,7 +124,6 @@
 		5523E2192665525800DAC79A /* Argonauts */ = {
 			isa = PBXGroup;
 			children = (
-				55BA322D266B6D9C003063DC /* Argonauts.entitlements */,
 				5523E21A2665525800DAC79A /* AppDelegate.swift */,
 				5523E21C2665525800DAC79A /* SceneDelegate.swift */,
 				5523E21E2665525800DAC79A /* ContentView.swift */,
@@ -141,10 +143,12 @@
 				5566AD1926982CC50032D7C9 /* EngHourView.swift */,
 				5566AD1B269833240032D7C9 /* EngHourDetailView.swift */,
 				55332653268B309400ED67C3 /* AccountView.swift */,
-				5523E2252665525900DAC79A /* Preview Content */,
 				559376F9269EF20F00D8A683 /* ServiceView.swift */,
 				559376FB269EF34600D8A683 /* ServiceDetailView.swift */,
+				5503D66526A016260092DE9F /* ServiceMaterialView.swift */,
 				559376FD269F33DA00D8A683 /* HubView.swift */,
+				5523E2252665525900DAC79A /* Preview Content */,
+				5589E8BF26A037DC00B2DDFD /* RowMaterial.swift */,
 			);
 			path = Argonauts;
 			sourceTree = "<group>";
@@ -257,8 +261,10 @@
 				55698BFE2680A3F100A8F3F3 /* EntryView.swift in Sources */,
 				556F3440268C6642004859C5 /* EnterPinView.swift in Sources */,
 				55332654268B309400ED67C3 /* AccountView.swift in Sources */,
+				5589E8C026A037DC00B2DDFD /* RowMaterial.swift in Sources */,
 				55332656268B30A800ED67C3 /* TransportsView.swift in Sources */,
 				555B4453268E099E0034884E /* TranspDetailEditView.swift in Sources */,
+				5503D66626A016260092DE9F /* ServiceMaterialView.swift in Sources */,
 				55E79EA526863D930043B2C3 /* CreateAccountView.swift in Sources */,
 				5523E2222665525800DAC79A /* Argonauts.xcdatamodeld in Sources */,
 				55B8136726821B47005BB9D7 /* EnterPassCodeView.swift in Sources */,
@@ -404,7 +410,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Argonauts/Argonauts.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "\"Argonauts/Preview Content\"";
@@ -429,7 +434,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Argonauts/Argonauts.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "\"Argonauts/Preview Content\"";
